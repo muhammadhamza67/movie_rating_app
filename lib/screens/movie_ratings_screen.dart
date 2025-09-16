@@ -66,12 +66,16 @@ class _MovieRatingsScreenState extends State<MovieRatingsScreen> {
                 color: Colors.white,
               ),
             ),
-            trailing: Text(
-              entry.value.toString(),
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.yellow,
-                fontWeight: FontWeight.w600,
+            trailing: SizedBox(
+              width: 70, // ✅ constrain trailing width
+              child: Text(
+                entry.value.toString(),
+                textAlign: TextAlign.end,
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.yellow,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
@@ -114,7 +118,8 @@ class _MovieRatingsScreenState extends State<MovieRatingsScreen> {
                   labelText: "Enter IMDb ID (e.g. tt1375666)",
                   labelStyle: TextStyle(color: Colors.white70),
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                 ),
               ),
             ),
@@ -139,12 +144,14 @@ class _MovieRatingsScreenState extends State<MovieRatingsScreen> {
             // Content
             Expanded(
               child: _loading
-                  ? const Center(child: CircularProgressIndicator(color: Colors.orange))
+                  ? const Center(
+                      child: CircularProgressIndicator(color: Colors.orange))
                   : _error != null
                       ? Center(
                           child: Text(
                             "⚠️ $_error",
-                            style: const TextStyle(color: Colors.redAccent, fontSize: 16),
+                            style: const TextStyle(
+                                color: Colors.redAccent, fontSize: 16),
                             textAlign: TextAlign.center,
                           ),
                         )
@@ -169,7 +176,10 @@ class _MovieRatingsScreenState extends State<MovieRatingsScreen> {
                                   if (_movieData!["title"] != null)
                                     Text(
                                       _movieData!["title"],
-                                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge
+                                          ?.copyWith(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -181,7 +191,8 @@ class _MovieRatingsScreenState extends State<MovieRatingsScreen> {
                                   // Ratings
                                   if (_movieData!["ratings"] != null)
                                     _buildRatings(
-                                      Map<String, dynamic>.from(_movieData!["ratings"]),
+                                      Map<String, dynamic>.from(
+                                          _movieData!["ratings"]),
                                     ),
                                 ],
                               ),
